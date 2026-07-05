@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Merchant Ledger — 성과 & 속성 대시보드 (로컬 샘플)</title>
+<title>Merchant Ledger — 성과 & 속성 대시보드</title>
 <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -25,11 +25,9 @@
     </nav>
 
     <div class="sync-card">
-      <div class="sync-title"><span class="sync-pulse"></span> 샘플 데이터 모드</div>
+      <div class="sync-title"><span class="sync-pulse"></span> 실데이터 연동</div>
       <div class="sync-meta">
-        자동화 미적용 (수동 샘플)<br>
-        성과: <b>js/data.sample.js</b><br>
-        속성: <b>js/data.sample.js</b>
+        <span id="syncStatus">연결 확인 중…</span>
       </div>
     </div>
   </aside>
@@ -122,21 +120,25 @@
       <div class="topbar">
         <div>
           <div class="page-title">제품 속성</div>
-          <div class="page-desc">product_view 기준 · 현재 스냅샷만 유지 (이력 미보관)</div>
+          <div class="page-desc">Products API 기준 · 현재 스냅샷만 유지 (이력 미보관)</div>
         </div>
       </div>
 
       <div class="card">
         <div class="filters">
-          <input type="search" id="searchInput" placeholder="상품명, offer_id 검색…">
-          <select id="filterBrand"><option value="">브랜드 전체</option></select>
-          <select id="filterCategory"><option value="">카테고리 전체</option></select>
+          <input type="search" id="searchInput" placeholder="모든 열 대상으로 검색…">
           <select id="filterAvail">
             <option value="">가용성 전체</option>
-            <option value="in_stock">판매중</option>
-            <option value="limited">재고 부족</option>
-            <option value="out_of_stock">품절</option>
+            <option value="in stock">판매중</option>
+            <option value="limited availability">재고 부족</option>
+            <option value="out of stock">품절</option>
           </select>
+
+          <div class="col-picker">
+            <button class="btn" id="colPickerBtn">☰ 표시할 열 선택</button>
+            <div class="col-picker-panel" id="colPickerPanel"></div>
+          </div>
+
           <button class="btn primary" id="downloadXlsx">⬇ 엑셀 다운로드</button>
         </div>
         <div class="result-count" id="resultCount">–</div>
@@ -144,37 +146,21 @@
 
       <div class="card">
         <div class="table-scroll">
-        <table class="sheet">
-          <thead>
-            <tr class="colref"><td></td><td>A</td><td>B</td><td>C</td><td>D</td><td>E</td><td>F</td><td>G</td></tr>
-            <tr>
-              <th class="rowidx">#</th>
-              <th>offer_id</th>
-              <th>제품명</th>
-              <th>브랜드</th>
-              <th>카테고리</th>
-              <th style="text-align:right;">가격</th>
-              <th>가용성</th>
-              <th>커스텀 라벨</th>
-            </tr>
-          </thead>
+        <table class="sheet" id="attrTable">
+          <thead id="attrTableHead"></thead>
           <tbody id="attrTableBody"></tbody>
         </table>
         </div>
       </div>
-      <footer class="note">엑셀 다운로드는 현재 필터·검색 조건이 적용된 행만 CSV로 내려받습니다 (더블클릭 시 Excel에서 바로 열립니다).</footer>
+      <footer class="note">엑셀 다운로드는 현재 필터·검색 조건과 선택된 열만 CSV로 내려받습니다 (더블클릭 시 Excel에서 바로 열립니다).</footer>
     </section>
 
   </main>
 </div>
 
-<!-- 실데이터 연결 설정 (Apps Script 웹 앱 URL) -->
 <script src="js/config.live.js"></script>
-<!-- 샘플 데이터 (WEB_APP_URL 미설정 시 기본값으로 사용됨) -->
 <script src="js/data.sample.js"></script>
-<!-- 렌더링 로직 (initDashboard 함수만 정의, 자동 실행 안 함) -->
 <script src="js/app.js"></script>
-<!-- 실데이터 fetch 시도 → 성공/실패 여부와 무관하게 마지막에 initDashboard() 호출 -->
 <script src="js/loadLiveData.js"></script>
 </body>
 </html>
