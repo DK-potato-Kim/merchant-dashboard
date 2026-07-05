@@ -46,6 +46,8 @@ const ATTRIBUTE_COLUMNS = [
   { key: 'custom_label2', label: '커스텀 라벨 2', numeric: false },
   { key: 'custom_label3', label: '커스텀 라벨 3', numeric: false },
   { key: 'custom_label4', label: '커스텀 라벨 4', numeric: false },
+  { key: 'custom_attributes', label: '커스텀 속성', numeric: false },
+  { key: 'issue_count', label: '이슈 개수', numeric: true },
   { key: 'expiration_date', label: '만료일', numeric: false }
 ];
 
