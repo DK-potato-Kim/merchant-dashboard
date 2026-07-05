@@ -150,3 +150,22 @@ nav{display:flex; flex-direction:column; gap:2px; margin-top:6px;}
 .chart-wrap svg{display:block; min-width:520px; width:100%; height:auto;}
 
 footer.note{font-size:11px; color:var(--muted); margin-top:6px; line-height:1.6;}
+
+.col-picker{position:relative; display:inline-block;}
+.col-picker-panel{
+  position:absolute; top:calc(100% + 6px); left:0; z-index:20;
+  background:var(--surface); border:1px solid var(--line); border-radius:8px;
+  padding:10px; min-width:220px; max-height:280px; overflow-y:auto;
+  box-shadow:0 6px 20px rgba(0,0,0,0.08);
+  display:none;
+}
+.col-picker-panel.open{display:block;}
+.col-picker-panel label{
+  display:flex; align-items:center; gap:8px; font-size:12.5px; padding:4px 2px; cursor:pointer;
+}
+.col-picker-panel label:hover{background:var(--surface-2); border-radius:4px;}
+.col-picker-actions{display:flex; gap:6px; margin-top:8px; padding-top:8px; border-top:1px solid var(--line);}
+.col-picker-actions button{
+  font-size:11px; padding:4px 8px; border-radius:6px; border:1px solid var(--line);
+  background:var(--surface); cursor:pointer;
+}
